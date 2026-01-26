@@ -4,30 +4,43 @@ version = "0.1.0a"
 description = "METIS Simulations for ESO"
 license = "GPL-3.0-or-later"
 authors = [
-{name = "Jennifer Karr", email="jkarr@asiaa.sinica.edu.tw"}
+    {name = "Jennifer Karr", email = "jkarr@asiaa.sinica.edu.tw"},
 ]
 maintainers = [
-{name = "Jennifer Karr", email = "jkarr@asiaa.sinica.edu.tw"},
-{name = "Hugo Buddelmeijer", email = "hugo@buddelmeijer.nl"},
-{name = "Fabian Haberhauer", email = "fabian.haberhauer@univie.ac.at"},
+    {name = "Jennifer Karr", email = "jkarr@asiaa.sinica.edu.tw"},
+    {name = "Hugo Buddelmeijer", email = "hugo@buddelmeijer.nl"},
+    {name = "Fabian Haberhauer", email = "fabian.haberhauer@univie.ac.at"},
 ]
 readme = "README.md"
-repository = "https://github.com/AstarVienna/METIS_Simulations"
-documentation = "https://scopesim.readthedocs.io/en/latest/"
-requires-python = ">=3.12,<3.15"
-dependencies = [
-    "scopesim @ git+https://github.com/astarVienna/scopesim",
-    "scopesim_templates >=0.8.1"
-]
-[tool.poetry]
-packages = [{include = "metis_simulations"}]
+requires-python = ">=3.13"
 classifiers = [
     "Intended Audience :: Science/Research",
     "Operating System :: OS Independent",
     "Topic :: Scientific/Engineering :: Astronomy",
 ]
+dependencies = [
+    "numpy",
+    "astropy",
+    "matplotlib",
+    "ScopeSim",
+    "ScopeSim_Templates",
+    "astar-utils",
+]
 
+[project.urls]
+Repository = "https://github.com/AstarVienna/METIS_Simulations"
+Documentation = "https://scopesim.readthedocs.io/en/latest/"
 
 [build-system]
-requires = ["poetry-core>=2.0.0,<3.0.0"]
-build-backend = "poetry.core.masonry.api"
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[tool.hatch.build.targets.wheel]
+packages = ["metis_simulations"]
+
+[tool.uv]
+override-dependencies = [
+    "astropy>=7",
+    "lxml>=6",
+    "scopesim>=0.11",
+]
